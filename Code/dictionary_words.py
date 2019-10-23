@@ -2,12 +2,15 @@ import sys, random
 
 
 def get_sentence(num):
+    """Generate a sentence from random words."""
     list_words = []
-
+    file = open("/usr/share/dict/words", "r")
+    words = file.readlines()
     for i in range(int(nums)):
-        word = random.choice(open("/usr/share/dict/words").readlines()).rstrip()
+        word = random.choice(words).rstrip()
         list_words.append(word)
 
+    file.close()
     return " ".join(list_words)
 
 
