@@ -2,6 +2,7 @@ import sys, random
 
 
 def rearrange(words):
+    """Rearrange words"""
     list_words = []
     copy_words = words.copy()
 
