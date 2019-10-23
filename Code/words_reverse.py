@@ -1,9 +1,15 @@
 import sys
 
-i = -1
-list_words = []
-while i >= (len(sys.argv[1:]) * -1):
-    list_words.append(sys.argv[1:][i])
-    i = i - 1
+def reverse_words(words):
+    i = -1
+    list_words = []
+    while i >= (len(words) * -1):
+        list_words.append(words[i])
+        i = i - 1
 
-print(*list_words)
+    return " ".join(list_words)
+
+
+if __name__ == "__main__":
+    params = sys.argv[1:]
+    print(reverse_words(params))
