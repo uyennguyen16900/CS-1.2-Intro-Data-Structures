@@ -3,11 +3,13 @@ import sys, random
 
 def rearrange(words):
     list_words = []
+    copy_words = words.copy()
 
-    for word in words:
-        list_words.append(word)
+    for i in range(len(words)):
+        rand_index = random.randint(0, len(copy_words) - 1)
+        list_words.append(copy_words[rand_index])
+        copy_words.pop(rand_index)
 
-    random.shuffle(list_words)
     return " ".join(list_words)
 
 
