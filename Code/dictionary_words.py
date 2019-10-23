@@ -6,11 +6,11 @@ def get_sentence(num):
     list_words = []
     file = open("/usr/share/dict/words", "r")
     words = file.readlines()
+    file.close()
     for i in range(int(nums)):
         word = random.choice(words).rstrip()
         list_words.append(word)
 
-    file.close()
     return " ".join(list_words)
 
 
