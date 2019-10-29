@@ -7,7 +7,7 @@ def reverse_sentences(sentences):
     length = len(copy_sentences)
 
     for i in range(length):
-        rand_num = random.randint(0, len(copy_sentences) - 1)
+        rand_num = random.randrange(copy_sentences)
         sentences_reversed.append(copy_sentences[rand_num].strip())
         copy_sentences.pop(rand_num)
 
