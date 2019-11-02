@@ -4,20 +4,22 @@ from utils import time_it
 def get_pair(words):
     pairs = []
     i = 0
-    while len(words) > 0 and i < len(words) - 1:
+    while len(words) > 0 and i < len(words):
         word = words[i]
         count = 1
         index = i + 1
         while index < len(words):
             if words[index] == word:
                 count += 1
-                words.remove(word)
+                words.pop(index)
                 index = index - 1
             index += 1
-        i += 1
 
         pairs.append(word.rstrip())
         pairs.append(count)
+
+        i += 1
+
 
     return pairs
 
@@ -101,5 +103,5 @@ if __name__ =="__main__":
     print(histogram_dictionary("words.txt"))
     # print(frequency('fish', 'one fish two fish red fish blue fish'))
     words = ["one", "fish", "two", "fish", "red", "fish", "blue", "fish"]
-    print(get_pair(words))
+    # print(get_pair(words))
     print(histogram_list_count('words.txt'))
