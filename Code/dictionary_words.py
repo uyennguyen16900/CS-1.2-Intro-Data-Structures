@@ -25,7 +25,7 @@ import sys, random
 
 def open_file(file_name):
     file = open(file_name, 'r')
-    words = file.readlines()
+    words = file.read().split()
     file.close()
 
     return words

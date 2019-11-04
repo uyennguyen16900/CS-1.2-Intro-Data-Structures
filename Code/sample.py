@@ -1,6 +1,7 @@
 import histogram
 import random
 def stochastic_sampling(histogram):
+    """Return a random word by frequency"""
     tokens = sum(histogram.values())
     num = 0
     dart = random.randrange(tokens)
@@ -18,7 +19,7 @@ if __name__ == "__main__":
     count_g = 0
     count_b = 0
     count_r = 0
-    for i in range(1000):
+    for i in range(10000):
         word = stochastic_sampling(histogram.histogram_dictionary("words.txt"))
         if word == "fish":
             count_f += 1

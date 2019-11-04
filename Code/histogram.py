@@ -19,8 +19,6 @@ def get_pair(words):
         pairs.append(count)
 
         i += 1
-
-
     return pairs
 
 # Return a histogram data structure that stores each
@@ -98,7 +96,7 @@ def frequency(word, histogram):
 
 
 if __name__ =="__main__":
-    print(histogram_list('words.txt'))
+    print(histogram_list('story.txt'))
     print(histogram_tuple("words.txt"))
     print(histogram_dictionary("words.txt"))
     # print(frequency('fish', 'one fish two fish red fish blue fish'))
