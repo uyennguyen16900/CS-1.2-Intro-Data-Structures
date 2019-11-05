@@ -1,4 +1,6 @@
 import timeit
+# maybe make this an offical test file :)
+
 # from sys import argv
 
 #

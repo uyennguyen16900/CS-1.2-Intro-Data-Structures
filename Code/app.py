@@ -1,11 +1,11 @@
 from flask import Flask
-from histogram import histogram_dictionary
+from histogram import Histogram
 from sample import stochastic_sampling
 import dictionary_words
 
 app = Flask(__name__)
 
-histogram = histogram_dictionary('story.txt')
+histogram = Histogram('story.txt').histogram_dictionary()
 
 @app.route('/')
 def hello_world():
