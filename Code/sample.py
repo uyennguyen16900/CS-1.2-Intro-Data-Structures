@@ -1,7 +1,6 @@
 import histogram
 import random
-# To many if statment for a main
-# test file or a function :)
+
 def stochastic_sampling(histogram):
     """Return a random word by frequency"""
     tokens = sum(histogram.values())
