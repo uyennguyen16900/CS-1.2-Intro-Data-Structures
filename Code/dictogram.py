@@ -50,6 +50,7 @@ class Dictogram(dict):
             if dart < num:
                 return key
 
+
 def print_histogram(word_list):
     print()
     print('Histogram:')
