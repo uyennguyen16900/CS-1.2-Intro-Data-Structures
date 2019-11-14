@@ -74,11 +74,6 @@ class LinkedList(object):
             self.head = new_node
             self.tail = new_node
         else:
-            # current_node = self.head
-            # while current_node.next is not None:
-            #     current_node = current_node.next
-            # current_node.next = new_node
-            # self.tail = current_node.next
             current_node = self.tail
             current_node.next = new_node
             self.tail = current_node.next
@@ -104,12 +99,10 @@ class LinkedList(object):
         # TODO: Check if node's data satisfies given quality function
         current_node = self.head
         while current_node is not None:
-            if current_node.data == quality:
-                return True
+            if quality(current_node.data) is True:
+                return current_node.data
             current_node = current_node.next
-        return False
-
-        #if quality(node.data) is True: return node.data
+        return None
 
     def delete(self, item):
         """Delete the given item from this linked list, or raise ValueError.
@@ -130,10 +123,12 @@ class LinkedList(object):
                         self.tail = previous_node
 
                 else:
+                    # if it's the first node
                     if current_node.next is None:
                         self.tail = None
                         self.head = None
                         break
+                    # if it's the only node in list
                     else:
                         self.head = current_node.next
                         current_node = self.head
@@ -142,9 +137,9 @@ class LinkedList(object):
             current_node = current_node.next
 
         list_len_2 = self.length()
+        # no item has been deleted
         if list_len_1 == list_len_2:
             raise ValueError('Item not found: {}'.format(item))
-
 
 def test_linked_list():
     ll = LinkedList()
