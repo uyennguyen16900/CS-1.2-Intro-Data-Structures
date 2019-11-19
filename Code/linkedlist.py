@@ -19,6 +19,7 @@ class LinkedList(object):
         """Initialize this linked list and append the given items, if any."""
         self.head = None  # First node
         self.tail = None  # Last node
+        self.count = 0
         # Append given items
         if items is not None:
             for item in items:
@@ -56,13 +57,14 @@ class LinkedList(object):
         """Return the length of this linked list by traversing its nodes.
         TODO: Running time: O(n) because we traverse through all nodes."""
         # TODO: Loop through all nodes and count one for each
-        count = 0
-        current_node = self.head
-        while current_node is not None:
-            count += 1
-            current_node = current_node.next
-
-        return count
+        # count = 0
+        # current_node = self.head
+        # while current_node is not None:
+        #     count += 1
+        #     current_node = current_node.next
+        #
+        # return count
+        return self.count
 
     def append(self, item):
         """Insert the given item at the tail of this linked list.
@@ -78,6 +80,8 @@ class LinkedList(object):
             current_node.next = new_node
             self.tail = current_node.next
 
+        self.count += 1
+
     def prepend(self, item):
         """Insert the given item at the head of this linked list.
         TODO: Running time: O(1) because you add new item at the beginning of the list"""
@@ -90,6 +94,8 @@ class LinkedList(object):
         else:
             new_node.next = self.head
             self.head = new_node
+
+        self.count += 1
 
     def find(self, quality):
         """Return an item from this linked list satisfying the given quality.
@@ -117,6 +123,7 @@ class LinkedList(object):
         previous_node = None
         while current_node is not None:
             if current_node.data == item:
+                self.count -= 1
                 if previous_node is not None:
                     previous_node.next = current_node.next
                     if self.tail.data == item:
@@ -132,6 +139,7 @@ class LinkedList(object):
                     else:
                         self.head = current_node.next
                         current_node = self.head
+
 
             previous_node = current_node
             current_node = current_node.next
