@@ -66,7 +66,7 @@ class LinkedList(object):
 
     def append(self, item):
         """Insert the given item at the tail of this linked list.
-        TODO: Running time: O(1) Why and under what conditions?"""
+        TODO: Running time: O(1) under any circumstances because you add new node after the tail."""
         # TODO: Create new node to hold given item
         # TODO: Append node after tail, if it exists
         new_node = Node(item)
@@ -94,7 +94,7 @@ class LinkedList(object):
     def find(self, quality):
         """Return an item from this linked list satisfying the given quality.
         TODO: Best case running time: O(1) when first item satisfies the given quality
-        TODO: Worst case running time: O(n) because you have to traverse through all nodes when the last item satisfiesthe given quality or there is no item"""
+        TODO: Worst case running time: O(1) because you have to traverse through all nodes when the last item satisfiesthe given quality or there is no item"""
         # TODO: Loop through all nodes to find item where quality(item) is True
         # TODO: Check if node's data satisfies given quality function
         current_node = self.head
