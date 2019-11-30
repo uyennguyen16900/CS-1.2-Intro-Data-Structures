@@ -53,6 +53,8 @@ class HashTableTest(unittest.TestCase):
         assert ht.length() == 2
         ht.set('X', 10)
         assert ht.length() == 3
+        ht.set('U', 2)
+        assert ht.length() == 4
 
     def test_contains(self):
         ht = HashTable()

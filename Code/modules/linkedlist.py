@@ -53,17 +53,27 @@ class LinkedList(object):
         """Return a boolean indicating whether this linked list is empty."""
         return self.head is None
 
-    def length(self):
+    def count_length(self):
         """Return the length of this linked list by traversing its nodes.
-        TODO: Running time: O(n) because we traverse through all nodes."""
+        Running time: O(n) because we traverse through all nodes."""
         # Loop through all nodes and count one for each
+        count = 0
+        current_node = self.head
+        while current_node is not None:
+            count += 1
+            current_node = current_node.next
+
+        return count
+
+    def length(self):
+        """ Return count for the length of the linked list."""
         return self.count
 
     def append(self, item):
         """Insert the given item at the tail of this linked list.
-        TODO: Running time: O(1) under any circumstances because you add new node after the tail."""
-        # TODO: Create new node to hold given item
-        # TODO: Append node after tail, if it exists
+         Running time: O(1) under any circumstances because you add new node after the tail."""
+        #  Create new node to hold given item
+        #  Append node after tail, if it exists
         new_node = Node(item)
         if self.head is None:
             self.head = new_node
@@ -77,9 +87,9 @@ class LinkedList(object):
 
     def prepend(self, item):
         """Insert the given item at the head of this linked list.
-        TODO: Running time: O(1) because you add new item at the beginning of the list"""
-        # TODO: Create new node to hold given item
-        # TODO: Prepend node before head, if it exists
+         Running time: O(1) because you add new item at the beginning of the list"""
+        #  Create new node to hold given item
+        #  Prepend node before head, if it exists
         new_node = Node(item)
         if self.head is None:
             self.head = new_node
@@ -92,10 +102,10 @@ class LinkedList(object):
 
     def find(self, quality):
         """Return an item from this linked list satisfying the given quality.
-        TODO: Best case running time: O(1) when first item satisfies the given quality
-        TODO: Worst case running time: O(n) because you have to traverse through all nodes when the last item satisfiesthe given quality or there is no item"""
-        # TODO: Loop through all nodes to find item where quality(item) is True
-        # TODO: Check if node's data satisfies given quality function
+         Best case running time: O(1) when first item satisfies the given quality
+         Worst case running time: O(n) because you have to traverse through all nodes when the last item satisfiesthe given quality or there is no item"""
+        #  Loop through all nodes to find item where quality(item) is True
+        #  Check if node's data satisfies given quality function
         current_node = self.head
         while current_node is not None:
             if quality(current_node.data):
@@ -105,11 +115,11 @@ class LinkedList(object):
 
     def delete(self, item):
         """Delete the given item from this linked list, or raise ValueError.
-        TODO: Best case running time: O(1) when given item is equal to the head.
-        TODO: Worst case running time: O(n) when given item is equal to the tail or there is no item in list"""
-        # TODO: Loop through all nodes to find one whose data matches given item
-        # TODO: Update previous node to skip around node with matching data
-        # TODO: Otherwise raise error to tell user that delete has failed
+         Best case running time: O(1) when given item is equal to the head.
+         Worst case running time: O(n) when given item is equal to the tail or there is no item in list"""
+        #  Loop through all nodes to find one whose data matches given item
+        #  Update previous node to skip around node with matching data
+        #  Otherwise raise error to tell user that delete has failed
         # Hint: raise ValueError('Item not found: {}'.format(item))
         list_len_1 = self.length()
         current_node = self.head
@@ -145,8 +155,8 @@ class LinkedList(object):
     def replace(self, item, new_item):
         """Replace the given item from the linked list with a new item."""
         node = self.find(lambda value: value == item)
-        node.data = new_item
-
+        if node is not None:
+            node.data = new_item
 
 def test_linked_list():
     ll = LinkedList()
