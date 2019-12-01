@@ -25,6 +25,11 @@ class HashTable(object):
         # Calculate the given key's hash code and transform into bucket index
         return hash(key) % len(self.buckets)
 
+    def get_item(self, key):
+        bucketLinkedList = self.buckets[self._bucket_index(key)]
+        item = bucketLinkedList.find(lambda node: node[0] == key)
+        return item, bucketLinkedList
+
     def keys(self):
         """Return a list of all keys in this hash table.
         TODO: Running time: O(???) Why and under what conditions?"""
@@ -81,13 +86,19 @@ class HashTable(object):
         # Check if key-value entry exists in bucket
         # If found, return value associated with given key
         # Otherwise, raise error to tell user get failed
-        bucketLinkedList = self.buckets[self._bucket_index(key)]
-        current_node = bucketLinkedList.head
-        while current_node is not None:
-            if current_node.data[0] == key:
-                return current_node.data[1]
-            current_node = current_node.next
-        raise KeyError('Key not found: {}'.format(key))
+
+        # bucketLinkedList = self.buckets[self._bucket_index(key)]
+        # current_node = bucketLinkedList.head
+        # while current_node is not None:
+        #     if current_node.data[0] == key:
+        #         return current_node.data[1]
+        #     current_node = current_node.next
+
+        item, bucketLinkedList = self.get_item(key)
+        if item:
+            return item[1]
+        else:
+            raise KeyError('Key not found: {}'.format(key))
 
 
     def set(self, key, value):
@@ -97,25 +108,34 @@ class HashTable(object):
         # Check if key-value entry exists in bucket
         # If found, update value associated with given key
         # Otherwise, insert given key-value entry into bucket
-        keyHash = self._bucket_index(key)
-        bucketLinkedList = self.buckets[keyHash]
 
-        node = None
-        current_node = bucketLinkedList.head
+        # keyHash = self._bucket_index(key)
+        # bucketLinkedList = self.buckets[keyHash]
+        #
+        # node = None
+        # current_node = bucketLinkedList.head
+        #
+        # while current_node is not None and node is None:
+        #     if current_node.data[0] == key:
+        #         node = current_node
+        #         break
+        #
+        #     current_node = current_node.next
+        #
+        # if node is None:
+        #     bucketLinkedList.append((key, value))
+        #     self.count += 1
+        # else:
+        #     # bucketLinkedList.replace(current_node.data, (key, value))
+        #     current_node.data = key, value
 
-        while current_node is not None and node is None:
-            if current_node.data[0] == key:
-                node = current_node
-                break
-
-            current_node = current_node.next
-
-        if node is None:
+        item, bucketLinkedList = self.get_item(key)
+        if item:
+            bucketLinkedList.replace(item, (key, value))
+        else:
             bucketLinkedList.append((key, value))
             self.count += 1
-        else:
-            # bucketLinkedList.replace(current_node.data, (key, value))
-            current_node.data = key, value
+
 
     def delete(self, key):
         """Delete the given key from this hash table, or raise KeyError.
@@ -124,17 +144,25 @@ class HashTable(object):
         # Check if key-value entry exists in bucket
         # If found, delete entry associated with given key
         # Otherwise, raise error to tell user delete failed
-        bucketLinkedList = self.buckets[self._bucket_index(key)]
-        current_node = bucketLinkedList.head
 
-        while current_node is not None:
-            if current_node.data[0] == key:
-                bucketLinkedList.delete(current_node.data)
-                self.count -= 1
-                return
-            current_node = current_node.next
+        # bucketLinkedList = self.buckets[self._bucket_index(key)]
+        # current_node = bucketLinkedList.head
+        #
+        # while current_node is not None:
+        #     if current_node.data[0] == key:
+        #         bucketLinkedList.delete(current_node.data)
+        #         self.count -= 1
+        #         return
+        #     current_node = current_node.next
+        #
+        # raise KeyError('Key not found: {}'.format(key))
 
-        raise KeyError('Key not found: {}'.format(key))
+        item, bucketLinkedList = self.get_item(key)
+        if item:
+            bucketLinkedList.delete(item)
+            self.count -= 1
+        else:
+            raise KeyError('Key not found: {}'.format(key))
 
 
 def test_hash_table():

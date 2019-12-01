@@ -154,9 +154,16 @@ class LinkedList(object):
 
     def replace(self, item, new_item):
         """Replace the given item from the linked list with a new item."""
-        node = self.find(lambda value: value == item)
-        if node is not None:
-            node.data = new_item
+        # node = self.find(lambda value: value == item)
+        # if node is not None:
+        #     node = new_item
+        node = self.head
+        while node is not None:
+            if node.data == item:
+                node.data = new_item
+                return
+
+            node = node.next
 
 def test_linked_list():
     ll = LinkedList()
