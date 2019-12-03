@@ -32,7 +32,7 @@ class HashTable(object):
 
     def keys(self):
         """Return a list of all keys in this hash table.
-        TODO: Running time: O(???) Why and under what conditions?"""
+         Running time: O(n) Why and under what conditions?"""
         # Collect all keys in each bucket
         all_keys = []
         for bucket in self.buckets:
@@ -42,7 +42,7 @@ class HashTable(object):
 
     def values(self):
         """Return a list of all values in this hash table.
-        TODO: Running time: O(???) Why and under what conditions?"""
+         Running time: O(n) because I have to traverse through all buckets to get the values in all key-value pairs."""
         # Loop through all buckets
         # Collect all values in each bucket
         values = []
@@ -53,7 +53,7 @@ class HashTable(object):
 
     def items(self):
         """Return a list of all items (key-value pairs) in this hash table.
-        TODO: Running time: O(???) Why and under what conditions?"""
+         Running time: O(n) because I have to traverse though all buckets to get all key-value pairs."""
         # Collect all pairs of key-value entries in each bucket
         all_items = []
         for bucket in self.buckets:
@@ -62,14 +62,12 @@ class HashTable(object):
 
     def length(self):
         """Return the number of key-value entries by traversing its buckets.
-        TODO: Running time: O(???) Why and under what conditions?"""
-        # Loop through all buckets
-        # Count number of key-value entries in each bucket
+         Running time: O(1) because I increment count by 1 whenever set() method is run so I don't have to traverse all buckets."""
         return self.count
 
     def contains(self, key):
         """Return True if this hash table contains the given key, or False.
-        TODO: Running time: O(???) Why and under what conditions?"""
+         Running time: O(n/b) because I have to traverse through items in a bucket"""
         # Find bucket where given key belongs
         # Check if key-value entry exists in bucket
         try:
@@ -81,19 +79,11 @@ class HashTable(object):
 
     def get(self, key):
         """Return the value associated with the given key, or raise KeyError.
-        TODO: Running time: O(???) Why and under what conditions?"""
+         Running time: O(n/b) because I have to traverse through items in a bucket"""
         # Find bucket where given key belongs
         # Check if key-value entry exists in bucket
         # If found, return value associated with given key
         # Otherwise, raise error to tell user get failed
-
-        # bucketLinkedList = self.buckets[self._bucket_index(key)]
-        # current_node = bucketLinkedList.head
-        # while current_node is not None:
-        #     if current_node.data[0] == key:
-        #         return current_node.data[1]
-        #     current_node = current_node.next
-
         item, bucketLinkedList = self.get_item(key)
         if item:
             return item[1]
@@ -103,33 +93,13 @@ class HashTable(object):
 
     def set(self, key, value):
         """Insert or update the given key with its associated value.
-        TODO: Running time: O(???) Why and under what conditions?"""
+        Running time: O(n/b) because I have to traverse through items in a bucket"""
         # Find bucket where given key belongs
         # Check if key-value entry exists in bucket
         # If found, update value associated with given key
         # Otherwise, insert given key-value entry into bucket
-
-        # keyHash = self._bucket_index(key)
-        # bucketLinkedList = self.buckets[keyHash]
-        #
-        # node = None
-        # current_node = bucketLinkedList.head
-        #
-        # while current_node is not None and node is None:
-        #     if current_node.data[0] == key:
-        #         node = current_node
-        #         break
-        #
-        #     current_node = current_node.next
-        #
-        # if node is None:
-        #     bucketLinkedList.append((key, value))
-        #     self.count += 1
-        # else:
-        #     # bucketLinkedList.replace(current_node.data, (key, value))
-        #     current_node.data = key, value
-
         item, bucketLinkedList = self.get_item(key)
+        # if item is not None
         if item:
             bucketLinkedList.replace(item, (key, value))
         else:
@@ -139,25 +109,13 @@ class HashTable(object):
 
     def delete(self, key):
         """Delete the given key from this hash table, or raise KeyError.
-        TODO: Running time: O(???) Why and under what conditions?"""
+        Running time: O(n/b) because I have to traverse through items in a bucket"""
         # Find bucket where given key belongs
         # Check if key-value entry exists in bucket
         # If found, delete entry associated with given key
         # Otherwise, raise error to tell user delete failed
-
-        # bucketLinkedList = self.buckets[self._bucket_index(key)]
-        # current_node = bucketLinkedList.head
-        #
-        # while current_node is not None:
-        #     if current_node.data[0] == key:
-        #         bucketLinkedList.delete(current_node.data)
-        #         self.count -= 1
-        #         return
-        #     current_node = current_node.next
-        #
-        # raise KeyError('Key not found: {}'.format(key))
-
         item, bucketLinkedList = self.get_item(key)
+        # if item is not None
         if item:
             bucketLinkedList.delete(item)
             self.count -= 1

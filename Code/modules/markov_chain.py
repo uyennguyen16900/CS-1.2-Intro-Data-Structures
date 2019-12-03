@@ -28,6 +28,24 @@ def markov_chain(pairs):
 
     return word_dict
 
+def second_order_markov_chain(pairs):
+    """"""
+    word_dict = {}
+    for pair in pairs:
+        for tuple in tuples:
+            if pair in word_dict.keys():
+                if pair[1] == tuple[0]:
+                    word_dict[pair][pair[1]] += 1
+                else:
+                    word_dict[pair][pair[1]] = 1
+
+            else:
+                dict = {pair[1]: 1}
+                word_dict[pair] = dict
+
+    return word_dict
+
+
 def generate_sentences(markov_chain, word_num):
     sentences = []
     list_keys = list(markov_chain)
@@ -41,6 +59,7 @@ def generate_sentences(markov_chain, word_num):
 
 if __name__ == "__main__":
     # words = ['one', 'fish', 'two', 'fish', 'red', 'fish', 'blue', 'fish']
-    words = open_file('story.txt')
-    # print(markov_chain(get_pairs(words)))
+    words = open_file('words.txt')
+    print(markov_chain(get_pairs(words)))
+    # print(second_order_markov_chain(get_pairs(words)))
     print(generate_sentences(markov_chain(get_pairs(words)), 20))
