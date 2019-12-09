@@ -28,21 +28,58 @@ def markov_chain(pairs):
 
     return word_dict
 
+def get_count(words, target_word):
+    count = 0
+    for word in words:
+        if word == target_word:
+            count += 1
+
+    return count
+
 def second_order_markov_chain(pairs):
     """"""
     word_dict = {}
-    for pair in pairs:
-        for tuple in tuples:
-            if pair in word_dict.keys():
-                if pair[1] == tuple[0]:
-                    word_dict[pair][pair[1]] += 1
-                else:
-                    word_dict[pair][pair[1]] = 1
+    # for pair in pairs:
+    #     for tuple in range(1, length(pairs)):
+    #         if pair in word_dict.keys():
+    #             if pair[1] == tuple[0]:
+    #                 print(word_dict[pair][tuple[1]])
+    #                 # word_dict[pair][tuple[1]] += 1
+    #             else:
+    #                 word_dict[pair][tuple[1]] = 1
+    #
+    #         else:
+    #             word_dict[pair] = {tuple[1]: 1}
 
+    # for pair in pairs:
+    #     if pair not in word_dict.keys():
+    #         word_dict[pair] = get_count(pairs, pair[])
+
+    i = 1
+    # while i < len(pairs):
+    #     j = i + 1
+    #     while j < len(pairs):
+    #         if pairs[i] in word_dict.keys():
+    #             if pairs[i][1] in word_dict[pairs[i]].keys():
+    #                 if pairs[i][1] == pairs[j][0]:
+    #                     word_dict[pairs[i]][pairs[j][0]] += 1
+    #                 else:
+    #                     word_dict[pairs[i]][pairs[j][0]] = 1
+    #
+    #         else:
+    #             dict = {pairs[j][1]: 1}
+    #             word_dict[pairs[i]] = dict
+
+    while i <= len(pairs):
+        if pairs[i-1] in word_dict.keys():
+            if pairs[i][1] in word_dict[pairs[i-1]].keys():
+                word_dict[pairs[i-1]][pairs[i][1]] += 1
             else:
-                dict = {pair[1]: 1}
-                word_dict[pair] = dict
+                word_dict[pairs[i-1]][pairs[i][1]] = 1
+        else:
+            word_dict[pairs[i-1]] = {pairs[i][1]: 1}
 
+        i += 1
     return word_dict
 
 
@@ -60,6 +97,6 @@ def generate_sentences(markov_chain, word_num):
 if __name__ == "__main__":
     # words = ['one', 'fish', 'two', 'fish', 'red', 'fish', 'blue', 'fish']
     words = open_file('words.txt')
-    print(markov_chain(get_pairs(words)))
-    # print(second_order_markov_chain(get_pairs(words)))
-    print(generate_sentences(markov_chain(get_pairs(words)), 20))
+    # print(markov_chain(get_pairs(words)))
+    print(second_order_markov_chain(get_pairs(words)))
+    # print(generate_sentences(markov_chain(get_pairs(words)), 20))
