@@ -2,8 +2,8 @@
 
 from __future__ import division, print_function  # Python 2 and 3 compatibility
 import random
-from sample import stochastic_sampling
-import histogram
+from .sample import stochastic_sampling
+from . import histogram
 
 class Dictogram(dict):
     """Dictogram is a histogram implemented as a subclass of the dict type."""

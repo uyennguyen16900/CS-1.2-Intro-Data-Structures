@@ -1,6 +1,6 @@
-import histogram
+from . import histogram
 import random
-from dictionary_words import open_file
+from .dictionary_words import open_file
 
 def stochastic_sampling(histogram):
     """Return a random word by frequency"""

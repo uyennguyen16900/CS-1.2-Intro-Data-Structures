@@ -34,6 +34,11 @@ class LinkedList(object):
         """Return a string representation of this linked list."""
         return 'LinkedList({!r})'.format(self.items())
 
+    def __iter__(self):
+        """Returns an interable representation of this linked list"""
+        return iter([value for value in self.items()])
+
+
     def items(self):
         """Return a list (dynamic array) of all items in this linked list.
         Best and worst case running time: O(n) for n items in the list (length)

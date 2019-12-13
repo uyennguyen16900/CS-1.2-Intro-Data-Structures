@@ -1,4 +1,4 @@
-import dictionary_words
+from . import dictionary_words
 
 #
 # class Histogram():
